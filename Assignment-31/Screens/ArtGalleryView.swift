@@ -13,6 +13,7 @@ struct ArtGalleryView: View {
     
     @State var angle: Angle = Angle(degrees: 0)
     @State var offset: CGSize = CGSize.zero
+    @State var currentValue: CGFloat = CGFloat.zero
     
     
     // MARK: - Body
@@ -24,6 +25,7 @@ struct ArtGalleryView: View {
                 ScrollView {
                     rotationGesturePaintingView
                     dragGesturePaintingView
+                    magnificationGesturePaintingView
                 }
                 
             }
@@ -74,6 +76,23 @@ struct ArtGalleryView: View {
                 }
         )
     }
+    
+    private var magnificationGesturePaintingView: some View {
+        CustomCardView(
+            image: artGallery[2].image,
+            title: artGallery[2].title,
+            painter: artGallery[2].painter,
+            date: artGallery[2].date
+        )
+        .scaleEffect(1 + currentValue)
+        .gesture(
+            MagnificationGesture()
+                .onChanged { value in
+                    currentValue = value - 1
+                }
+        )
+    }
+    
 }
 
 #Preview {
