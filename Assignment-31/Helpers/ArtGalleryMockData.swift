@@ -10,12 +10,12 @@ import Foundation
 struct ArtGalleryMockData {
     // MARK: - Properties
     static let PaintingsMockData: [Painting] = [
-        Painting(image: "LadyGodiva", title: "LadyGodiva", painter: "John Collier", date: "1898"),
-        Painting(image: "MaryMagdalene", title: "MaryMagdalene", painter: "Giuseppe Maria Crespi", date: "c. 1690"),
-        Painting(image: "RecliningNude", title: "RecliningNude", painter: "Amedeo Modigliani", date: "1917"),
-        Painting(image: "ThebirthofVenus", title: "ThebirthofVenus", painter: "Sandro Botticelli", date: "c. 1484–1486"),
-        Painting(image: "WaterSerpents", title: "WaterSerpents", painter: "Gustav Klimt", date: "1907–1908"),
-        Painting(image: "BathshebaAtHerBath", title: "BathshebaAtHerBath", painter: "Rembrandt", date: "1654"),
+        Painting(image: "LadyGodiva", title: "Lady Godiva", painter: "John Collier", date: "1898"),
+        Painting(image: "MaryMagdalene", title: "Mary Magdalene", painter: "Giuseppe Maria Crespi", date: "1690"),
+        Painting(image: "RecliningNude", title: "Reclining Nude", painter: "Amedeo Modigliani", date: "1917"),
+        Painting(image: "ThebirthofVenus", title: "The birth of Venus", painter: "Sandro Botticelli", date: " 1484–1486"),
+        Painting(image: "WaterSerpents", title: "Water Serpents", painter: "Gustav Klimt", date: "1907–1908"),
+        Painting(image: "BathshebaAtHerBath", title: "Bathsheba At Her Bath", painter: "Rembrandt", date: "1654"),
         Painting(image: "Nevermore", title: "Nevermore", painter: "Paul Gauguin", date: "1897"),
     ]
     

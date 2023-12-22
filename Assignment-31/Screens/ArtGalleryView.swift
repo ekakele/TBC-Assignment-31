@@ -11,10 +11,10 @@ struct ArtGalleryView: View {
     // MARK: - Properties
     private var artGallery: [Painting] = ArtGalleryMockData.PaintingsMockData
     
-    @State var angle: Angle = Angle(degrees: 0)
-    @State var offset: CGSize = CGSize.zero
-    @State var currentValue: CGFloat = CGFloat.zero
-    
+    @State private var angle: Angle = Angle(degrees: 0)
+    @State private var offset: CGSize = CGSize.zero
+    @State private var currentValue: CGFloat = CGFloat.zero
+    @State private var isComplete: Bool = false
     
     // MARK: - Body
     var body: some View {
@@ -26,6 +26,7 @@ struct ArtGalleryView: View {
                     rotationGesturePaintingView
                     dragGesturePaintingView
                     magnificationGesturePaintingView
+                    longPressGesturePaintingView
                 }
                 
             }
@@ -91,6 +92,23 @@ struct ArtGalleryView: View {
                     currentValue = value - 1
                 }
         )
+    }
+    
+    private var longPressGesturePaintingView: some View {
+        CustomCardView(
+            image: artGallery[3].image,
+            title: artGallery[3].title,
+            painter: artGallery[3].painter,
+            date: artGallery[3].date
+        )
+        .opacity(isComplete ? 0.2 : 1.0)
+        .animation(.easeInOut(duration: 1.0), value: isComplete)
+        .onLongPressGesture(minimumDuration: 1.5) {
+            withAnimation(.spring) {
+                isComplete.toggle()
+                currentValue = isComplete ? 0.2 : 0
+            }
+        }
     }
     
 }
