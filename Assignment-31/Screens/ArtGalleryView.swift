@@ -12,7 +12,7 @@ struct ArtGalleryView: View {
     private var artGallery: [Painting] = ArtGalleryMockData.PaintingsMockData
     
     @State var angle: Angle = Angle(degrees: 0)
-    @State var offsetSize: CGSize = CGSize.zero
+    @State var offset: CGSize = CGSize.zero
     
     
     // MARK: - Body
@@ -23,6 +23,7 @@ struct ArtGalleryView: View {
                     .ignoresSafeArea()
                 ScrollView {
                     rotationGesturePaintingView
+                    dragGesturePaintingView
                 }
                 
             }
@@ -30,14 +31,13 @@ struct ArtGalleryView: View {
         }
     }
     
-    
     private var rotationGesturePaintingView: some View {
         CustomCardView(
             image: artGallery[0].image,
             title: artGallery[0].title,
             painter: artGallery[0].painter,
             date: artGallery[0].date
-        ) 
+        )
         .rotationEffect(angle)
         .gesture(
             RotationGesture()
@@ -51,7 +51,29 @@ struct ArtGalleryView: View {
                 }
         )
     }
-
+    
+    private var dragGesturePaintingView: some View {
+        CustomCardView(
+            image: artGallery[1].image,
+            title: artGallery[1].title,
+            painter: artGallery[1].painter,
+            date: artGallery[1].date
+        )
+        .offset(offset)
+        .gesture(
+            DragGesture()
+                .onChanged { value in
+                    withAnimation(.spring()) {
+                        offset = value.translation
+                    }
+                }
+                .onEnded { value in
+                    withAnimation(.spring()) {
+                        offset = .zero
+                    }
+                }
+        )
+    }
 }
 
 #Preview {

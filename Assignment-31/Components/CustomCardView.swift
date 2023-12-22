@@ -17,7 +17,7 @@ struct CustomCardView: View {
     // MARK: - Body
     var body: some View {
         ZStack {
-            Color.darkBackground
+            Color.clear
                 .ignoresSafeArea()
             
             paintingStackView
