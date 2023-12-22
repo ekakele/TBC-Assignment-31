@@ -12,6 +12,7 @@ struct ArtGalleryView: View {
     private var artGallery: [Painting] = ArtGalleryMockData.PaintingsMockData
     
     @State var angle: Angle = Angle(degrees: 0)
+    @State var offsetSize: CGSize = CGSize.zero
     
     
     // MARK: - Body
@@ -23,7 +24,7 @@ struct ArtGalleryView: View {
                 ScrollView {
                     rotationGesturePaintingView
                 }
-               
+                
             }
             .navigationTitle("Female Nudity in Art")
         }
@@ -36,7 +37,9 @@ struct ArtGalleryView: View {
             title: artGallery[0].title,
             painter: artGallery[0].painter,
             date: artGallery[0].date
-        ) .gesture(
+        ) 
+        .rotationEffect(angle)
+        .gesture(
             RotationGesture()
                 .onChanged { value in
                     angle = value
@@ -48,6 +51,7 @@ struct ArtGalleryView: View {
                 }
         )
     }
+
 }
 
 #Preview {
