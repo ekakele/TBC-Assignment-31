@@ -12,7 +12,8 @@ struct ArtGallery: Hashable {
 }
 
 struct Painting: Hashable {
-    let name: String
+    let image: String
+    let title: String
     let painter: String
     let date: String
 }
