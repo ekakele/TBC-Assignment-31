@@ -15,8 +15,7 @@ struct ArtGalleryMockData {
         Painting(image: "RecliningNude", title: "Reclining Nude", painter: "Amedeo Modigliani", date: "1917"),
         Painting(image: "ThebirthofVenus", title: "The birth of Venus", painter: "Sandro Botticelli", date: " 1484–1486"),
         Painting(image: "WaterSerpents", title: "Water Serpents", painter: "Gustav Klimt", date: "1907–1908"),
-        Painting(image: "BathshebaAtHerBath", title: "Bathsheba At Her Bath", painter: "Rembrandt", date: "1654"),
-        Painting(image: "Nevermore", title: "Nevermore", painter: "Paul Gauguin", date: "1897"),
+        Painting(image: "BathshebaAtHerBath", title: "Bathsheba At Her Bath", painter: "Rembrandt", date: "1654")
     ]
     
     static let paintingMockData: Painting =  Painting(

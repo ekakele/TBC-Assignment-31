@@ -12,9 +12,15 @@ struct ArtGalleryView: View {
     private var artGallery: [Painting] = ArtGalleryMockData.PaintingsMockData
     
     @State private var angle: Angle = Angle(degrees: 0)
+    
     @State private var offset: CGSize = CGSize.zero
+    
     @State private var currentValue: CGFloat = CGFloat.zero
+    @State private var lastValue: CGFloat = CGFloat.zero
+    
     @State private var isComplete: Bool = false
+    
+    @State private var isActivated: Bool = false
     
     // MARK: - Body
     var body: some View {
@@ -27,6 +33,7 @@ struct ArtGalleryView: View {
                     dragGesturePaintingView
                     magnificationGesturePaintingView
                     longPressGesturePaintingView
+                    tapGesturePaintingView
                 }
                 
             }
@@ -85,11 +92,15 @@ struct ArtGalleryView: View {
             painter: artGallery[2].painter,
             date: artGallery[2].date
         )
-        .scaleEffect(1 + currentValue)
+        .scaleEffect(1 + currentValue + lastValue)
         .gesture(
             MagnificationGesture()
                 .onChanged { value in
                     currentValue = value - 1
+                }
+                .onEnded { value in
+                    lastValue += currentValue
+                    currentValue = 0
                 }
         )
     }
@@ -106,7 +117,23 @@ struct ArtGalleryView: View {
         .onLongPressGesture(minimumDuration: 1.5) {
             withAnimation(.spring) {
                 isComplete.toggle()
-                currentValue = isComplete ? 0.2 : 0
+            }
+        }
+    }
+    
+    private var tapGesturePaintingView: some View {
+        CustomCardView(
+            image: artGallery[4].image,
+            title: artGallery[4].title,
+            painter: artGallery[4].painter,
+            date: artGallery[4].date
+        )
+        .background(isActivated ? .yellow.opacity(0.5) : .clear)
+        .cornerRadius(8)
+        .padding(.horizontal, 42)
+        .onTapGesture {
+            withAnimation(.spring) {
+                isActivated.toggle()
             }
         }
     }
