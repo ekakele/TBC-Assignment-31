@@ -41,6 +41,7 @@ struct ArtGalleryView: View {
         }
     }
     
+    // MARK: - Components: CardViews + Gestures
     private var rotationGesturePaintingView: some View {
         CustomCardView(
             image: artGallery[0].image,
