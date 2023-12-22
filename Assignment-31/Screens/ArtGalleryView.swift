@@ -30,10 +30,10 @@ struct ArtGalleryView: View {
                     .ignoresSafeArea()
                 ScrollView {
                     rotationGesturePaintingView
-                    dragGesturePaintingView
                     magnificationGesturePaintingView
                     longPressGesturePaintingView
                     tapGesturePaintingView
+                    dragGesturePaintingView
                 }
                 
             }
@@ -47,7 +47,8 @@ struct ArtGalleryView: View {
             image: artGallery[0].image,
             title: artGallery[0].title,
             painter: artGallery[0].painter,
-            date: artGallery[0].date
+            date: artGallery[0].date,
+            gestureType: "Rotation Gesture"
         )
         .rotationEffect(angle)
         .gesture(
@@ -63,35 +64,13 @@ struct ArtGalleryView: View {
         )
     }
     
-    private var dragGesturePaintingView: some View {
+    private var magnificationGesturePaintingView: some View {
         CustomCardView(
             image: artGallery[1].image,
             title: artGallery[1].title,
             painter: artGallery[1].painter,
-            date: artGallery[1].date
-        )
-        .offset(offset)
-        .gesture(
-            DragGesture()
-                .onChanged { value in
-                    withAnimation(.spring()) {
-                        offset = value.translation
-                    }
-                }
-                .onEnded { value in
-                    withAnimation(.spring()) {
-                        offset = .zero
-                    }
-                }
-        )
-    }
-    
-    private var magnificationGesturePaintingView: some View {
-        CustomCardView(
-            image: artGallery[2].image,
-            title: artGallery[2].title,
-            painter: artGallery[2].painter,
-            date: artGallery[2].date
+            date: artGallery[1].date,
+            gestureType: "Magnification Gesture"
         )
         .scaleEffect(1 + currentValue + lastValue)
         .gesture(
@@ -108,10 +87,11 @@ struct ArtGalleryView: View {
     
     private var longPressGesturePaintingView: some View {
         CustomCardView(
-            image: artGallery[3].image,
-            title: artGallery[3].title,
-            painter: artGallery[3].painter,
-            date: artGallery[3].date
+            image: artGallery[2].image,
+            title: artGallery[2].title,
+            painter: artGallery[2].painter,
+            date: artGallery[2].date,
+            gestureType: "Long Press Gesture"
         )
         .opacity(isComplete ? 0.2 : 1.0)
         .animation(.easeInOut(duration: 1.0), value: isComplete)
@@ -124,10 +104,11 @@ struct ArtGalleryView: View {
     
     private var tapGesturePaintingView: some View {
         CustomCardView(
-            image: artGallery[4].image,
-            title: artGallery[4].title,
-            painter: artGallery[4].painter,
-            date: artGallery[4].date
+            image: artGallery[3].image,
+            title: artGallery[3].title,
+            painter: artGallery[3].painter,
+            date: artGallery[3].date,
+            gestureType: "Tap Gesture"
         )
         .background(isActivated ? .yellow.opacity(0.5) : .clear)
         .cornerRadius(8)
@@ -139,6 +120,29 @@ struct ArtGalleryView: View {
         }
     }
     
+    private var dragGesturePaintingView: some View {
+        CustomCardView(
+            image: artGallery[4].image,
+            title: artGallery[4].title,
+            painter: artGallery[4].painter,
+            date: artGallery[4].date,
+            gestureType: "Drag Gesture"
+        )
+        .offset(offset)
+        .gesture(
+            DragGesture()
+                .onChanged { value in
+                    withAnimation(.spring()) {
+                        offset = value.translation
+                    }
+                }
+                .onEnded { value in
+                    withAnimation(.spring()) {
+                        offset = .zero
+                    }
+                }
+        )
+    }
 }
 
 #Preview {
