@@ -9,19 +9,15 @@ import SwiftUI
 
 struct CustomCardView: View {
     // MARK: - Properties
-    //    @EnvironmentObject var viewModel:
-    
     var image: String
     var title: String
     var painter: String
     var date: String
-    //    var gesture: Double
     
-    //    var painting: Painting
     // MARK: - Body
     var body: some View {
         ZStack {
-            Color.darkBackgorund
+            Color.darkBackground
                 .ignoresSafeArea()
             
             paintingStackView
