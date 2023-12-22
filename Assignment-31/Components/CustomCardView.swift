@@ -21,7 +21,7 @@ struct CustomCardView: View {
     // MARK: - Body
     var body: some View {
         ZStack {
-            Color.black
+            Color.darkBackgorund
                 .ignoresSafeArea()
             
             paintingStackView
@@ -30,16 +30,14 @@ struct CustomCardView: View {
     
     // MARK: - Components
     private var paintingStackView: some View {
-        VStack(alignment: .leading, spacing: 5) {
+        VStack(alignment: .leading) {
             paintingImageView
             Spacer()
-            titleTextView
-            painterTextView
-            dateTextView
+            textStackView
         }
         .frame(width: 300, height: 300)
         .padding(.vertical, 10)
-        .padding(.horizontal, 0)
+        .padding(.horizontal, 4)
         .background(.gray.opacity(0.4))
         .cornerRadius(8)
     }
@@ -47,8 +45,20 @@ struct CustomCardView: View {
     private var paintingImageView: some View {
         Image(image)
             .resizable()
+            .frame(width: 260, alignment: .leading)
             .scaledToFit()
+            .padding()
             .shadow(color: .gray, radius: 5)
+    }
+    
+    private var textStackView: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            titleTextView
+            painterTextView
+            dateTextView
+        }
+        .padding(.vertical, 4)
+        .padding(.horizontal, 15)
     }
     
     private var dateTextView: some View {

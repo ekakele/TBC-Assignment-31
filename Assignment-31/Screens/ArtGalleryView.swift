@@ -8,8 +8,19 @@
 import SwiftUI
 
 struct ArtGalleryView: View {
+    // MARK: - Properties
+    @ObservedObject private var viewModel = ArtGalleryViewModel()
+    
+    // MARK: - Body
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            ZStack {
+                Color.darkBackgorund
+                    .ignoresSafeArea()
+                PaintingGridView(viewModel: viewModel, paintings: viewModel.artGallery)
+            }
+            .navigationTitle("Female Nudity in Art")
+        }
     }
 }
 
